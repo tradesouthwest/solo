@@ -1,0 +1,1038 @@
+/*
+Theme Name:  Solo
+Theme URI:   https://classicpress-themes/
+Author:      Tradesouthwest
+Author URI:  https://tradesouthwest.com/
+Description: Solo is a minimalistic tiny flex based theme templated for general website use. Basic content sections are full width. Footer is full width with three widget sections. Options include content padding; background-color. Demo at https://leadspilot.com/classicpress/
+Requires PHP: 7.4
+Requires CP:  1.4
+Version:     1.0.0
+License:     GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags:        one-column, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header,sticky-post, threaded-comments, translation-ready, blog
+Text Domain: solo
+
+This theme, like ClassicPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+/* ===========================
+    CSS Index         
+==============================
+ *
+ * 1.0 - Body/Page 
+ * 2.0 - Universal padding and margins and alignments
+ * 3.0 - Site Header
+ * * 3.1 - Navigation
+ * 4.0 - Page
+ * 5.0 - Wide Banner Top
+ * 6.0 - Main 
+ * 7.0 - Content
+ * 8.0 - Sidebar
+ * 9.0 - Footer
+ * 10.0 - Media Breakpoints
+ */
+
+/**
+ * 1.0 - Body | Page
+ * perf overhead. Anecdotal evidence suggests border-box isn’t significant*
+ * @see *https://docs.google.com/spreadsheets/d/1jJUuSBQj6a3imkX_QYZDVW5eDyE5tXULTkqnI7rMLU8/edit#gid=0
+ * ^from https://www.paulirish.com/2012/box-sizing-border-box-ftw/
+ */
+/* apply a natural box layout model to all elements, but allowing components to change */
+
+* {
+	box-sizing: border-box;
+}
+:root {
+  --bg-color: #fbfbfb;
+  --bg-secondary-color: #f3f3f6;
+  --bg-darker: #4f4e4c;
+  --color-primary: #34555f;
+  --color-shaded: #aaaaaa;
+  --color-linkBlue: #1455c2;
+  --color-lightGrey: #d2d6dd;
+  --color-ghostWhite: whitesmoke;
+  --color-grey: #747681;
+  --color-darkGrey: #3f4144;
+  --color-error: #d43939;
+  --color-success: #28bd14;
+  --grid-maxWidth: 136rem;
+  --grid-gutter: 2rem;
+  --font-size: 16px;
+  --font-color: #333;
+  --font-family-sans: -apple-system, "BlinkMacSystemFont", "Avenir",
+    "Avenir Next", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-family-mono: monaco, "Consolas", "Lucida Console", monospace;
+	--navback: rgba(155,155,155, .96);
+	--font-sans-serifs: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+/* Does not set font size for body here. Uses Customizer */
+body {
+  height: 100%;
+	font-family: var(--font-sans-serifs);
+  margin: 0 auto;
+  padding-top: .622%;
+  background-color: var(--bg-color)
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+	text-decoration: underline;
+}
+
+/**
+ * ************************************************** 2.0 - Universal
+ */
+ 
+/*
+ Avoid text overflows
+*/
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+  line-height: 1.485;
+}
+img {
+	border-style: none; /* @source normalize.css */
+	height: auto;
+	max-width: 100%;
+	/* Adhere to container width. 
+	vertical-align: middle; */
+}
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	overflow: hidden;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+}
+/* must have higher specificity than alternative color schemes inline styles */
+.skip-link {
+	background-color: #f1f1f1;
+	box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+	color: #21759b;
+	display: block;
+	font-family: inherit;
+	font-size: 14px;
+	font-weight: 700;
+	left: -9999em;
+	outline: none;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	text-transform: none;
+	top: -9999em;
+}
+
+.logged-in .skip-link {
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+	font-family: "Open Sans", sans-serif;
+}
+
+.skip-link:focus {
+	clip: auto;
+	height: auto;
+	left: 6px;
+	top: 7px;
+	width: auto;
+	z-index: 100000;
+}
+a:active,
+a:hover {
+    outline: 0;
+}
+hr{
+  height: 0;
+  border: 1px solid #aaa;
+  width: 100%;
+  display: block;
+}
+hr:before,
+hr:after{
+  content: " ";
+  display: table;
+  width: 100%;
+  clear:both;
+}
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+pre code,
+pre {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  white-space: pre-wrap;
+  background-color: transparent;
+  border-radius: 0;
+}
+pre code, 
+code{
+  font-family: monaco, "Consolas", "Lucida Console", monospace;
+  background: #efefef
+}
+table {
+  background-color: transparent;
+}
+
+caption {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: #777;
+}
+
+th {
+  text-align: left;
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+table>thead>tr>th,
+table>tbody>tr>th,
+table>tfoot>tr>th,
+table>thead>tr>td,
+table>tbody>tr>td,
+table>tfoot>tr>td {
+  padding: 4px;
+  line-height: 1.28;
+  vertical-align: middle;
+  border-top: 1px solid #ddd;
+}
+input[type="submit"]{
+  background: #eee;
+	box-sizing: inherit;
+  color: #464646;
+  padding: 6px 8px;
+  width: fit-content;
+  height: min-content;
+  white-space: normal;
+  text-align:center;
+  margin: 0 0 0 auto;
+  border-radius: 3px;
+  font-size: .938em;
+  background: rgba(242, 242, 242, .86);
+  box-shadow: 0 1px 2px 1px #777;
+  border: 0;
+}
+input[type="search"],
+input[type="email"],
+input[type="url"],
+input[type="text"]{
+  padding: 4px;
+  line-height: 1.28;
+  vertical-align: middle;
+  
+}
+
+label + input,
+label + textarea,
+label + select {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #818181;
+}
+
+label {
+	display: flex;
+	margin-bottom: 8px;
+}
+blockquote {
+  border: 4px dotted #ccc;
+  padding-left: .825em;
+  padding-right: .825em;
+  border-radius: 0 18px;
+}
+cite{
+  width: 100%;
+  display: block;
+  opacity: .64
+}
+cite:before{
+  content: "__";
+  position: relative;
+  top: -.4em;
+  display: inline-flex;
+  margin-right: .25em;
+}
+ol, 
+ul{
+  margin: 0;
+}
+ol li, 
+ul li{
+  margin-left: 1em;
+  margin-right: 1em;
+  line-height: 1.5 
+}
+/**
+* ************************************************** 3.0 - Site Header
+*/
+.page-header{
+  width: calc(100% - 2px);
+  padding: .5em 1.35em;
+  display: flex;
+}
+.page-header-inner{
+
+  margin: 0;
+  /* border: thin solid black */
+}
+.site-title,
+.site-description{
+  padding-bottom: 1px;
+  position:relative;
+  top: -.5em;
+  line-height: 1.2878;
+  letter-spacing: 1px;
+}
+.site-logo{
+  z-index: 1;
+  position: relative;
+
+}
+.site-logo img{
+  position: relative;
+  /* to remove spacing, set to auto or percent */
+  width: max-content;
+}
+  .solo-declare-content{
+    font-style: oblique;
+    font-size: smaller;
+    color: #646464;
+  }
+
+/* ************************************************** 3.1 - Nav */
+/*
+the hamburger button with a little gradient effekt
+*/
+#nav_button {
+  border: 2px solid #c8c8c8;
+  border-radius: 3px 3px 3px 3px;
+  cursor: pointer;
+  display: block;
+  height: 52px;
+  padding: 0px 4px 7px 3px;
+  position: relative;
+  width: 54px; 
+}
+
+/*
+The white stripes in the hamburger button
+*/
+#nav_button div {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 2px 2px 2px 2px;
+  height: 5px;
+  margin-top: 7px;
+  margin-left: 3px;
+  width: 90%;
+}
+.page-nav li:focus-within .sub-menu {
+  opacity: 1;
+  display: flex;
+}
+/* start keep for fallback */
+.page-nav ul{
+  list-style: inside none;
+}
+.page-nav{
+  display: flex;
+  flex-wrap: wrap;  
+  justify-content: flex-start;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 1440px;
+  overflow-x: auto;
+
+}
+.nav-container{
+  display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+  margin-top: 1em;
+  width: 96.95%;
+  margin-left: auto;
+  margin-right: auto;
+  /* box-shadow: 0 0 .58px .55px #f0f2f1; */
+  margin-bottom: 0;
+} 
+.page-nav{   
+  z-index: 99999;
+  list-style-type: none;
+
+} 
+.main-default{
+    z-index: 1;
+  }
+  #page_nav{
+    background: transparent;
+  }
+.page-nav a {
+  
+  border-radius: 0;
+  margin: 0 4px 0 1px;
+  display: inline-flex;
+	padding: .5em 1.5em;
+  width: max-content;
+} 
+.page-nav a:not(.sub-menu li a){
+  box-shadow: 0px 1px 1px 1px #d8d8d8;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.page-nav .sub-menu {
+  display: none;
+  position: absolute;
+  margin-left: -2.444em;
+}
+.page-nav li .sub-menu {
+  display: none;
+  opacity: 0;
+  transition: .8s;
+  z-index: 99999;
+}
+.page-nav li:hover .sub-menu {
+  display: block;
+  opacity: 1;
+}
+.page-nav li .sub-menu a{
+  box-shadow: 1px 5px 5px 1px #aaa;
+  border-radius: 0 7px 7px 0;
+  width: 98%
+}
+.page-nav .sub-menu > li{
+  width: 98%;
+}
+.page-nav .sub-menu .sub-menu {
+  margin-left: -1px;
+  margin-top: -1em;
+}
+.page-nav .sub-menu > li {
+  margin-left: 3.75em;
+} 
+.page-nav .sub-menu li.menu-item-has-children .sub-menu li:first-child{
+  margin-top: .65em
+}
+.page-nav .menu-item-has-children{
+  border-bottom: 2px dotted #d6d7d8
+}
+.page-nav .menu-item-has-children .sub-menu li{
+  margin-left: 2em;
+}
+/* end keep for fallback */
+
+
+.nav-button-wrapper{
+  flex-direction: row;
+  flex-wrap: nowrap;
+  display: none;
+  left: 0;
+  align-content: start;
+  width: 100%;
+  padding-left:15px;
+  padding-right: 15px;
+}
+.nav-button-top input[type="checkbox"]{
+ flex: 1;
+  height: 2em;
+  width: 2em;
+  font-size: large;
+  box-shadow: 0 0 1px 5px #2d2d2d;
+}
+.pagination-nav {
+  margin-top: 1em;
+  width: 100%;
+  display: flex;
+}
+.prenav{
+  margin-right:1em;
+  opacity: .64
+}
+/**
+ * ************************************************** 4.0 - Page
+ * This is a wrapper for all content below the header.
+ * Ends in the footer template just above footer.
+ */
+
+/* Alignments */
+.bypostauthor {
+  color: inherit;
+}
+
+.alignleft {
+  display: inline;
+  margin-right: 1.5em;
+}
+
+.alignright {
+  display: inline;
+  margin-left: 1.5em;
+}
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin: 0 auto;
+}
+
+.textcenter {
+  clear: left;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+.comment-list .comment{
+  margin-top: 1em;
+}
+/* 4.3 - Widgets */
+.widget_tag_cloud,
+.widget_archive,
+.widget_categories{
+  max-height: 21.475em;
+  overflow-y: auto;
+  margin-bottom: 1em;
+  border-bottom: thin solid #ddd;
+}
+/**
+* ************************************************** 5.0 - Top Declarations
+*/
+.page-header-declare{
+  display: flex;
+  align-content: baseline;
+}
+.solo-declare-top{
+  margin-left:  calc( 10vw + 1em);
+}
+/**
+ * ************************************************** 6.0 Main 
+ */
+main {
+  display: flex;
+  flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 1em;
+  z-index: 1;
+/* border: 1px solid green */
+}
+.page-wrap{
+  height: 100%;
+  margin: 0 1%;
+  max-width: 98%;/*TODO fit-content*/
+  padding: 0; 
+  display: flex;
+  flex-direction: column;
+}
+/**
+ * ************************************************** 7.0 - Content
+ */
+.section-content {
+  width: calc(100% - .05em);
+  margin: .5em auto;
+  padding: 0 1em;
+}
+/* https://www.compart.com/en/unicode/U+27B0 Curly Loop */
+.solo-page:before,
+.solo-blog:before,
+.solo-single:before{
+  content: "\27b0";
+  width: 93.28%;
+  margin: 0 auto;
+  border-top: 1px solid #cccccc;
+  margin: 1.2222em auto 0 auto;
+  color: #cccccc;
+  position: relative;
+  text-align:center;
+  line-height: 0;
+  font-weight: lighter;
+  font-size:20px;
+
+}
+.solo-blog .section-content article[id^="post-"]{
+  margin-bottom: 2.72em;
+  border-bottom: thin solid #ccc;
+  padding-bottom: .75em
+}
+.solo-page{
+  background: #fbfbfb;
+}
+.solo-blog{
+  background: #fbfbfb;
+}
+.solo-single{
+  background: #fbfbfb;
+}
+.solo-heading-meta{
+  font-size: 68%;
+  opacity: .76;
+  font-family: inherit;
+  font-style: oblique
+}
+.solo-loop {
+  padding: 0; 
+  /* max width keeps content readable */
+  max-width: 99em;
+  margin: 0 auto;
+}
+.solo-blog article[id^="post-"]:after{
+  content: "";
+  width: 96%;
+  margin: 0 auto;
+  border-top: 1px solid transparent;
+  height: 1px;
+  display: block;
+}
+.solo-blog .article-heading .post-title a{
+  font-size: larger;
+  width: 100%;
+  padding-top: .4em;
+  display: inline-flex;
+  font-family: serif;
+  font-style: italic;
+}
+.solo-blog .article-heading .post-title a:hover,
+.solo-blog .article-heading .post-title a:focus{
+  border-bottom: none;
+}
+[class^="solo-attachment"]{
+  max-width: 100%;
+}
+.solo-attachment-small{
+  height: 150px
+}
+.solo-attachment-medium{
+  height: 300px
+}
+.solo-attachment-large{
+  height: 540px
+}
+.solo-blog img.solo-featured {
+  transform: scale(.875);
+  margin: 0;
+  padding: 0;
+  
+}
+.solo-featured-excerpt{
+  display: flex;
+  width: 100%;
+}
+.solo-inlined-excerpt{
+  display: inline-flex;
+  flex-wrap: wrap;
+  max-width: 380px;
+}
+.excerptwrap-link{
+  display:inline-flex;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+.solo-blog .maxheight-sm{
+  width: 45%;
+  padding: 0;
+display: flex;
+position: relative;
+  left: -2.3336em;
+  top: -1em;
+}
+.linked-attachment-container-sm:before,
+.linked-attachment-container-sm:after{
+  content: "";
+  clear: both;
+}
+.linked-attachment-container-sm:after{
+  width: 100%;
+  display: table;
+} /*
+figure[id^="attachment_"] {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+} */
+figure[id^="attachment_"] img[width~="1200"]{
+  max-width: 90vw;
+  margin-right: 1em;
+}
+figcaption:after{
+  content: "";
+  clear: both;
+  display: block;
+} 
+/* Gallery
+ ---------------------------------------- */
+
+ .gallery {
+  margin: auto;
+  /* gallery clearing*/
+  overflow: hidden;
+  width: 100%;
+}
+
+.gallery .gallery-item {
+  float: left;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.gallery.gallery-columns-1 .gallery-item {
+  width: 100%;
+}
+
+.gallery.gallery-columns-2 .gallery-item {
+  width: 50%;
+}
+
+.gallery.gallery-columns-3 figure {
+  width: 33.33%;
+}
+
+.gallery.gallery-columns-4 .gallery-item {
+  width: 25%;
+}
+
+.gallery.gallery-columns-5 figure {
+  width: 20%;
+}
+
+.gallery.gallery-columns-6 figure {
+  width: 16.66%;
+}
+
+.gallery.gallery-columns-7 figure {
+  width: 14.285%;
+}
+
+.gallery.gallery-columns-8 figure {
+  width: 12.5%;
+}
+
+.gallery.gallery-columns-9 figure {
+  width: 11.111%;
+}
+
+.gallery img {
+  box-shadow: 0px 0px 4px #999;
+  border: 1px solid white;
+  padding: 5px;
+  background: #f9f9f9;
+}
+
+.gallery img:hover {
+  background: white;
+}
+
+.gallery .gallery-caption {
+  margin-left: 0;
+}
+
+.gallery dl,
+.gallery dt {
+  margin: 0;
+}
+
+.gallery br+br {
+  display: none;
+}
+
+.gallery br {
+  clear: both
+}
+
+/**
+ * ************************************************** 8.0 - Sidebar
+ */
+.inner-sidebar {
+  padding: 1.938em 0 0 1.938em;
+  box-sizing: border-box;
+  width: 90%;
+  margin-right: 1em;
+  margin-left: 1em;
+}
+#wp-calendar {
+  table-layout:fixed;
+  
+}
+#wp-calendar td{
+  padding: 3px 9px;
+}
+/**
+ * ************************************************** 9.0 Footer 
+ */ 
+.page-footer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-left: 1em;
+  border-top: thin solid #f3f3f3;
+}
+.rtl .page-footer{
+  padding-right: 1em;
+}
+.page-footer > .section-third{
+  flex: 1 1 0;
+}
+.footer-base{
+  margin: 0;
+  min-height: 2.67em;
+  background: #2d2d2d;
+  padding: 14px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.footer-base a,
+.footer-base{
+  color: #ffffff;
+}
+.upto{
+  display: flex;
+  align-items: center;
+}
+.upto a {
+  font-size: larger;
+  border: thin solid white;
+  border-radius: 50%
+}
+
+/* Back to Top button */
+
+.back_to_top {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 2;
+  cursor: pointer;
+  position: relative;
+}
+
+.back_to_top:hover {
+  background: #e9ebec;
+  color: black;
+}
+
+.back_to_top-show {
+  display: block;
+}
+/**
+ * ************************************************** 10.0 - Media Breakpoints
+ * Mobile nav breakpoint is at 900px. 
+ */
+@media screen and (max-width: 600px) {
+  .solo-logo-container{
+    border: thin solid #f0f2f1;
+    margin-bottom: .25em;
+  }
+  .nav-container{
+    min-height: 3em;
+  }
+  .nav-button-wrapper{
+  display: flex;
+  background: repeating-linear-gradient( 
+    45deg, transparent, transparent 10px, #eee 10px, #aaa 20px ), 
+    linear-gradient( to bottom, #eee, #bbb );
+  width: 100%;
+  padding-left:15px;
+  padding-right: 15px;
+  }
+  .nav-wrapper{
+    margin-left:0;
+    margin-top: .5em;
+  }
+  .site-title, h1{
+    text-align:center;
+    font-size: inherit;
+  }
+  .site-description{
+    font-size: 85%;
+  }
+  .page-footer,
+  .section-content,
+  .section-sidebar{
+    width:100%; 
+    flex-direction: column;
+  } 
+  #wp-calendar td{
+    padding: 3px;
+  }
+  .site-logo img,
+  .page-header .solo-attachment-small{
+    height: 80px;
+  }
+  
+  .comment-form-comment > textarea{
+    max-width: 95vw;
+    margin: 0 auto;
+  }
+}
+/* Most mobile events work here @899 */
+@media screen and ( max-width: 899px ){
+  .page-header{
+    flex-direction: column;
+  }
+  .solo-logo-container{
+    display: flex;
+    align-items: center;
+    padding: 1px;
+    width: 100%;
+    border: thin solid #f0f2f1;
+    margin-bottom: .25em;
+  }
+  .solo-logo-container:first-child{
+    border: none;
+    padding-left:0;
+  }
+  .solo-declare-top{
+    margin-left:0;
+  }
+  .solo-declare-content,
+  .solo-declare-content p,
+  .solo-declare-content span,
+  .solo-declare-content a{
+    line-height: .888;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    margin-left: 5%;
+    width: 83.5vw;
+  }
+  .page-header,
+  .section-content, 
+  .solo-page .inner_content{ 
+    padding-left: 10px;
+    padding-right: 10px; 
+  }
+  .nav-button-wrapper{
+    display: flex; 
+  }
+  .page-nav-wrapper{
+    margin: 0;
+    padding: 0;
+  }
+  .page-nav{
+    max-width: 1021px;
+    overflow-x: visible;
+
+  }
+  .page-nav {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: start;
+
+  }
+  .page-nav a{
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+    word-wrap: break-word;
+    white-space:normal;
+  }
+  .page-nav li{
+    width:100%;
+    text-align:left;
+  }
+  .page-nav .menu-item-has-children .sub-menu li{
+    margin-left: 3.5em;
+  }
+  .main-default{
+    z-index: 1;
+  }
+  .nav-container{
+    display: flex;    
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: 99999;
+  }
+  
+}
+@media screen and ( min-width: 768px ){
+  .page-nav{
+    display: inline-flex
+  }
+}
+@media only screen and (orientation: landscape) {
+  .page-wrap {
+    flex-wrap: wrap;
+  }
+  nav {
+    flex-basis: 100%;
+    order: 1
+  }
+}
+@media screen and (max-width: 900px)  and ( min-width: 767px ){
+  
+  .page-nav-wrapper{
+    display: none;
+  }
+  .page-nav{
+    flex-direction: column;
+  }
+  .solo-logo-container{
+    padding-left: 1em;
+  }
+  .solo-logo-container:first-child{
+    border: none;
+    padding-left:0;
+  }
+} 
+@media screen and (min-width: 800px) and (max-width: 900px){
+ /* .page-nav{
+    flex-wrap: nowrap
+  }
+  .page-wrap{
+    height:100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    border-top: 0;  
+    border-right: 0; 
+    border-bottom: 0;
+    border-left: 0; 
+    } */
+} 
+@media screen and (min-width: 1439px){
+  body{ 
+    
+    margin: 0 auto;
+  }
+  .page-nav{
+  max-width: 1440px;
+  overflow-x: visible;
+  }
+  .main-default{
+    margin: 0;
+  }
+  .back_to_top {
+  
+    left: auto;
+  }
+  .page-wrap{
+    max-width: 1440px;
+    margin: 0 auto;
+    border-top: 0;
+    border-right: 1px dotted #ddd;
+    border-bottom: 0;
+    border-left: 1px dotted #ddd;
+  }
+} 
