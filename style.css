@@ -3,7 +3,7 @@ Theme Name:  Solo
 Theme URI:   https://classicpress-themes/
 Author:      Tradesouthwest
 Author URI:  https://tradesouthwest.com/
-Description: Solo is a minimalistic tiny flex based theme templated for general website use. Basic content sections are full width. Footer is full width with three widget sections. Options include content padding; background-color. Demo at https://leadspilot.com/classicpress/
+Description: Solo is a minimalism tiny flex based theme templated for general website use. Basic content sections are full width. Footer is full width with three widget sections. Options include content padding; background-color; custom header text and link; link color; text alignment; Demo at https://leadspilot.com/classicpress/
 Requires PHP: 7.4
 Requires CP:  1.4
 Version:     1.0.0
@@ -288,12 +288,13 @@ ul li{
 * ************************************************** 3.0 - Site Header
 */
 .page-header{
-  width: calc(100% - 2px);
-  padding: .5em 1.35em;
+  width: calc(100% - .5em);
+
   display: flex;
+  margin: 0 auto;
+  justify-content: center;
 }
 .page-header-inner{
-
   margin: 0;
   /* border: thin solid black */
 }
@@ -301,7 +302,6 @@ ul li{
 .site-description{
   padding-bottom: 1px;
   position:relative;
-  top: -.5em;
   line-height: 1.2878;
   letter-spacing: 1px;
 }
@@ -369,15 +369,9 @@ The white stripes in the hamburger button
 }
 .nav-container{
   display: flex;
-	align-items: center;
-	justify-content: center;
+	
 	flex-wrap: wrap;
-  margin-top: 1em;
-  width: 96.95%;
-  margin-left: auto;
-  margin-right: auto;
-  /* box-shadow: 0 0 .58px .55px #f0f2f1; */
-  margin-bottom: 0;
+  margin: 1em auto;
 } 
 .page-nav{   
   z-index: 99999;
@@ -530,18 +524,16 @@ The white stripes in the hamburger button
  * ************************************************** 6.0 Main 
  */
 main {
-  display: flex;
+  display:        flex;
   flex-direction: column;
-	flex-wrap: wrap;
+	flex-wrap:      wrap;
 	justify-content: space-between;
 	gap: 1em;
-  z-index: 1;
-/* border: 1px solid green */
+  z-index: 2;
 }
 .page-wrap{
-  height: 100%;
-  margin: 0 1%;
-  max-width: 98%;/*TODO fit-content*/
+  height:  100%;
+  margin:  0 auto;
   padding: 0; 
   display: flex;
   flex-direction: column;
@@ -550,9 +542,8 @@ main {
  * ************************************************** 7.0 - Content
  */
 .section-content {
-  width: calc(100% - .05em);
+  width: calc(100% - .5em);
   margin: .5em auto;
-  padding: 0 1em;
 }
 /* https://www.compart.com/en/unicode/U+27B0 Curly Loop */
 .solo-page:before,
@@ -651,12 +642,21 @@ main {
   margin: 0;
 }
 .solo-blog .maxheight-sm{
-  width: 45%;
+  width: 96%;
   padding: 0;
 display: flex;
 position: relative;
   left: -2.3336em;
   top: -1em;
+}
+.solo-blog .solo-inlined-excerpt{
+  font-size: smaller;
+  position: relative;
+  top: 2em;
+  max-height: 150px;
+  align-content: center;
+  font-style:oblique;
+
 }
 .linked-attachment-container-sm:before,
 .linked-attachment-container-sm:after{
@@ -837,23 +837,45 @@ figcaption:after{
 .back_to_top-show {
   display: block;
 }
+.solo-logo-container .site-description{
+  margin-top: .5em;
+  width: 100%;
+  padding: 4px 10px 0 0;
+}
 /**
  * ************************************************** 10.0 - Media Breakpoints
  * Mobile nav breakpoint is at 900px. 
  */
 @media screen and (max-width: 600px) {
+  
+  .site-title, h1{
+    text-align:center;
+    font-size: inherit;
+  }
+  .site-description{
+    font-size: 85%;
+    display: flex;
+    background: #eee;
+    position: relative;
+    left: -1.5em;
+  }
   .solo-logo-container{
     border: thin solid #f0f2f1;
     margin-bottom: .25em;
+  }
+  .page-header-inner .site-title{
+    font-size: 1.825rem;
+    margin: 4.5% auto 4%;
   }
   .nav-container{
     min-height: 3em;
   }
   .nav-button-wrapper{
   display: flex;
-  background: repeating-linear-gradient( 
+  background: linear-gradient(#c8d5e3, #eee,#bdcfde);
+  /* repeating-linear-gradient( 
     45deg, transparent, transparent 10px, #eee 10px, #aaa 20px ), 
-    linear-gradient( to bottom, #eee, #bbb );
+    linear-gradient( to bottom, #eee, #bbb );*/
   width: 100%;
   padding-left:15px;
   padding-right: 15px;
@@ -861,13 +883,6 @@ figcaption:after{
   .nav-wrapper{
     margin-left:0;
     margin-top: .5em;
-  }
-  .site-title, h1{
-    text-align:center;
-    font-size: inherit;
-  }
-  .site-description{
-    font-size: 85%;
   }
   .page-footer,
   .section-content,
@@ -918,6 +933,7 @@ figcaption:after{
     margin-left: 5%;
     width: 83.5vw;
   }
+  
   .page-header,
   .section-content, 
   .solo-page .inner_content{ 
@@ -967,11 +983,38 @@ figcaption:after{
   }
   
 }
-@media screen and ( min-width: 768px ){
-  .page-nav{
-    display: inline-flex
+@media screen and ( max-width: 767px ){
+  .solo-mobi-descr-desk{
+    display: none;
+  }
+  .solo-mobi-descr-logo{
+    display: flex;
   }
 }
+@media screen and ( min-width: 768px ){
+  .page-nav{
+    margin: auto;
+    justify-content: center;
+  }
+  .page-header-inner{
+    padding-left:1.444em;
+  }
+  .solo-mobi-descr-desk{
+    display: flex;
+  }
+  .solo-mobi-descr-logo{
+    display: none;
+  }
+}
+/*
+@media screen and ( max-width: 601px ) and ( min-width: 768px ){
+  .page-header-inner .site-title,
+  .page-header-inner .site-description{
+    font-size: 82.5%;
+    margin-left: 1em;
+  }
+ 
+} */
 @media only screen and (orientation: landscape) {
   .page-wrap {
     flex-wrap: wrap;
@@ -982,7 +1025,10 @@ figcaption:after{
   }
 }
 @media screen and (max-width: 900px)  and ( min-width: 767px ){
-  
+  .inner_content img.alignnone,
+  .inner_content img[height^="1200"]{
+    max-width: 97vw;
+  }
   .page-nav-wrapper{
     display: none;
   }
@@ -996,20 +1042,6 @@ figcaption:after{
     border: none;
     padding-left:0;
   }
-} 
-@media screen and (min-width: 800px) and (max-width: 900px){
- /* .page-nav{
-    flex-wrap: nowrap
-  }
-  .page-wrap{
-    height:100%;
-    max-width: 1024px;
-    margin: 0 auto;
-    border-top: 0;  
-    border-right: 0; 
-    border-bottom: 0;
-    border-left: 0; 
-    } */
 } 
 @media screen and (min-width: 1439px){
   body{ 

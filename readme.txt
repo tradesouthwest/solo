@@ -13,7 +13,7 @@ Solo is a minimalistic tiny flex based theme templated for general website use.
 Basic content sections are full width. Footer is full width with three widget sections. Options include content padding; background-color.
 Theme sets maximum width to 1440px for content comfort readability. 
 Customizer options include: .section-content .page-header .nav-container bk-color
-Demo at https://leadspilot.com/classicpress/
+Demo at https://leadspilot.com/classicpress/ (Theme is compliant but not fully accessibility ready.)
 
 == Features ==
 - Theme headings
@@ -45,6 +45,6 @@ Theme is not fully accessibility ready.
 
 == Change Log ==
 = 1.0.1
-* updated padding on main
+* @600 styles
 = 1.0.0
 * initial release 

@@ -15,12 +15,12 @@
 
 get_header(); ?>
 
-<main class="main-default solo-blog">
-    <section class="section-content">
+<main id="site-content" class="main-default solo-blog" aria-label="Start of content">
+    <section aria-labelledby="articles found" class="section-content">
     
     <?php if ( have_posts() ) : ?>
 
-        <div class="solo-loop">
+        <div aria-labelledby="posts" class="solo-loop">
 
             <?php while ( have_posts() ) : the_post(); ?>
 
@@ -42,6 +42,12 @@ get_header(); ?>
                     <div class="maxheight-sm">
 
                         <?php do_action( 'solo_excerpt_attachment' ); ?>
+                        <span class="solo-inlined-excerpt">
+                    <?php 
+                    if ( has_excerpt() ) {
+                        the_excerpt();
+                    } ?>
+                </span>
 
                     </div>
 

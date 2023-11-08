@@ -27,7 +27,7 @@ add_action( 'customize_register', 'solo_register_theme_customizer_setup' );
 
 function solo_register_theme_customizer_setup($wp_customize)
 {
-	$transport = 'postMessage'; 
+	$transport = 'refresh'; //'postMessage'; 
     // Theme font choice section
     $wp_customize->add_section( 'title_tagline', array(
         'title'       => __( 'Theme Headings', 'solo' ),
@@ -45,8 +45,9 @@ function solo_register_theme_customizer_setup($wp_customize)
 		'priority' => 25
 	  ));
 
-    //-----------------Settings and Controls ------------------
-	/* Add setting & control for declaration section 
+    //----------------- Settings and Controls ------------------
+	/* 
+	 * ********** Add setting & control for declaration section **********
 	*/
 	// Lead in text
     $wp_customize->add_setting( 
@@ -155,7 +156,8 @@ function solo_register_theme_customizer_setup($wp_customize)
 		'type'       => 'number',
 		'description' => __( 'Vertical positioning only. Uses em not px. Decimals OK.', 'solo')
 	));
-	/* ********************** Colors ***************************************
+	/* 
+	 * ********************** Colors **********************
 	 */
 	// Font color
 	$wp_customize->add_setting(
@@ -217,29 +219,23 @@ function solo_register_theme_customizer_setup($wp_customize)
 			)
 		)
 	);
-	/* ****************** Top Section Declaration **************************
+	/* 
+	 * ****************** Blog and Page Settings *******************
 	 */
-	// Add setting & control for
-	/*
-    $wp_customize->add_setting( 
-		'solo_blog_layout', array(
-		'default'    => 'column',
+	// Add setting & control for 
+	$wp_customize->add_setting( 
+		'solo_page_width', array(
+		'default'    => '1440',
 		'capability' => 'edit_theme_options',
 		'transport'  => $transport
 	));
-	$wp_customize->add_control( 'solo_blog_layout', array(
-		'label'       => __( 'Display Blog Posts', 'solo'),
-		'section'     => 'solo_layout',
-		'settings'    => 'solo_blog_layout',
-		'description' => __( 'Choose how to set posts on blog page. Column or Row?', 'solo'),
-		'type'        => 'select',
-    	'choices'     => array(
-        	'default' => 'Select Layout',
-        	'row'     => 'Row',
-        	'column'  => 'Column'
-    		)
-	)); */
-	// Add setting & control for content alignment
+	$wp_customize->add_control( 'solo_page_width', array(
+		'label'   => __( 'Theme Width', 'solo' ),
+		'section'  => 'solo_layout',
+		'settings'  => 'solo_page_width',
+		'type'       => 'number',
+		'description' => __( 'Set nuber of pixels for width of page. Mobile not effected.', 'solo')
+	));
     $wp_customize->add_setting( 'solo_content_align', array(
 		'default' => 'justify',
 		'capability' => 'edit_theme_options',
@@ -252,7 +248,7 @@ function solo_register_theme_customizer_setup($wp_customize)
 		'description' => __( 'Choose the text alignment for central content.', 'solo'),
 		'type'        => 'select',
     	'choices'     => array(
-        	'default' => 'Default/Justify',
+        	'justify' => 'Default/Justify',
         	'left'    => 'Left',
 			'right'   => 'Right',
         	'justify' => 'Justify',
@@ -261,15 +257,20 @@ function solo_register_theme_customizer_setup($wp_customize)
 	));
 	$wp_customize->add_setting( 
 		'solo_padding_content', array(
-		'default'    => '0',
+		'default'    => '15',
 		'capability' => 'edit_theme_options',
 		'transport'  => $transport
 	));
 	$wp_customize->add_control( 'solo_padding_content', array(
-		'label'   => __( 'Content Padding', 'solo' ),
-		'section'  => 'solo_layout',
-		'settings'  => 'solo_padding_content',
-		'type'       => 'number',
+		'label'          => __( 'Content Padding', 'solo' ),
+		'section'         => 'solo_layout',
+		'settings'         => 'solo_padding_content',
+		'sanitize_callback' => 'absint',
+		'type'             => 'number',
+		'input_attrs'    => array(
+			'min'      => 15,
+			'max'      => 300
+		),
 		'description' => __( 'Change padding space of Content sections. Mobile not effected.', 'solo')
 	));
 

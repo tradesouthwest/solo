@@ -12,8 +12,8 @@
 
 get_header(); ?>
 
-  <main class="main-default solo-page">
-    <section class="section-content">
+<main id="site-content" class="main-default solo-page" aria-label="Start of content">
+    <section aria-labelledby="page" class="section-content">
         
     <?php if ( have_posts() ) : ?>
         <div class="solo-loop">

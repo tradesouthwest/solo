@@ -12,8 +12,8 @@
 
 get_header(); ?>
   
-<main class="main-default solo-single">
-    <section class="section-content">
+<main id="site-content" class="main-default solo-single" aria-label="Start of content">
+    <section aria-labelledby="article to read" class="section-content">
 
         <?php while ( have_posts() ) : the_post(); ?>
         
