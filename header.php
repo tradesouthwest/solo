@@ -30,71 +30,74 @@
         <?php esc_html_e( 'Skip to content', 'solo' ); ?>
     </a>
 
-    
+    <header class="page-header" aria-label="Banner">
+        <div class="solo-declare-container">
+            <?php 
+            if( has_custom_logo() ) : ?>
 
-        <header class="page-header" aria-label="Banner">
-            <div class="solo-logo-container">
-                <?php 
-                if( has_custom_logo() ) : ?>
+            <div class="solo-logo-container site-logo">
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" 
+                   rel="bookmark"><?php echo wp_kses_post( 
+                   force_balance_tags( solo_theme_custom_logo() ) ); ?></a>
+            </div>
+            <?php 
+            endif; ?>
+            
+            <div class="solo-logo-container solo-mobi-descr-logo">
+                <div class="site-description">
 
-                <div class="site-logo">
-                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" 
-                        rel="bookmark"><?php echo wp_kses_post( 
-                        force_balance_tags( solo_theme_custom_logo() ) ); ?></a>
-                </div>
-                <?php 
-                endif; ?>
-                <div class="solo-mobi-descr-logo">
+                    <?php echo esc_html( get_bloginfo( 'description', 'display' ) ); ?>
+
+                </div>            
+            </div>
+        </div>
+            <div class="page-header-inner solo-logo-container">
+                <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" 
+                    rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+                <div class="solo-mobi-descr-desk">
                     <div class="site-description">
 
                         <?php echo esc_html( get_bloginfo( 'description', 'display' ) ); ?>
 
                     </div>            
-                </div>
+                </div>  
             </div>
-                <div class="page-header-inner solo-logo-container">
-                    <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" 
-                        rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-                    <div class="solo-mobi-descr-desk">
-                        <div class="site-description">
+                <div class="page-header-declare solo-logo-container">
 
-                            <?php echo esc_html( get_bloginfo( 'description', 'display' ) ); ?>
-
-                        </div>            
-                    </div>  
+                    <?php do_action( 'solo_header_declaration' ); ?>
+                
                 </div>
+    </header>
+        <div class="nav-container">
+            <div class="nav-button-wrapper">
+                <button id="nav_button" title="open page navigation" 
+                        aria-expanded="true" aria-controls="page_nav">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </button>
+                <span class="nav-expand-title">
 
-                    <div class="page-header-declare solo-logo-container">
+                    <?php do_action( 'solo_menu_text' ); ?>
 
-                        <?php do_action( 'solo_header_declaration' ); ?>
-                    
+                </span>
+            </div>
+                <nav class="page-nav-wrapper" aria-label="Primary" style="">
+                    <div id="page_nav" class="nav-wrapper">
+
+                    <?php
+                    wp_nav_menu(
+                        array(
+                            'theme_location'  => 'primary-menu',
+                            'depth'          => 3,
+                            'container'     => 'div',
+                            'menu_class'   => 'page-nav',
+                            'fallback_cb' => 'wp_page_menu',
+                        )
+                    ); ?>
+                        
                     </div>
+                </nav>
+        </div>  
 
-        </header>
-            <div class="nav-container">
-               <div class="nav-button-wrapper">
-                    <button id="nav_button" aria-expanded="true" aria-controls="page_nav">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-            </button>
-                </div>
-                    <nav class="page-nav-wrapper" aria-label="Primary" style="">
-                        <div id="page_nav" class="nav-wrapper">
-
-                        <?php
-                        wp_nav_menu(
-                            array(
-                                'theme_location'  => 'primary-menu',
-                                'depth'          => 3,
-                                'container'     => 'div',
-                                'menu_class'   => 'page-nav',
-                                'fallback_cb' => 'wp_page_menu',
-                            )
-                        ); ?>
-                            
-                        </div>
-                    </nav>
-            </div>  
-
-    <div class="page-wrap"><!-- ends in footer template part -->
+        <div class="page-wrap"><!-- ends in footer template part -->

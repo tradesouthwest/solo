@@ -143,18 +143,18 @@ function solo_register_theme_customizer_setup($wp_customize)
 		'description' => __( 'Styles for button are using ".cta-tinyd"', 'solo')
 	));
 	$wp_customize->add_setting( 
-		'solo_declare_callposition', array(
-		'default'    => '4',
+		'solo_menu_text', array(
+		'default'    => '',
 		'capability' => 'edit_theme_options',
 		'transport'  => 'refresh'
 	));
 	$wp_customize->add_control( 
-		'solo_declare_callposition', array(
-		'label'   => 'Call To Action Position',
+		'solo_menu_text', array(
+		'label'   => 'Text for Menu Button',
 		'section'  => 'solo_declare',
-		'settings'  => 'solo_declare_callposition',
-		'type'       => 'number',
-		'description' => __( 'Vertical positioning only. Uses em not px. Decimals OK.', 'solo')
+		'settings'  => 'solo_menu_text',
+		'type'       => 'text',
+		'description' => __( 'Leave blank for no wording next to mobile navigation button.', 'solo')
 	));
 	/* 
 	 * ********************** Colors **********************

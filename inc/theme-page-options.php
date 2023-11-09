@@ -47,12 +47,14 @@ function solo_theme_customizer_css() {
         $hheight   = get_theme_mod( 'solo_hero_bkgheight', '520' ); 
     
     echo normalize_whitespace(
-    'body{ background-color: #' . esc_attr( $background_color ) . ';}.entry-content, .excerpt-content, li, h2, h3, h4 {color: ' . esc_attr( $pcolor ) . ';}
+    'body{ background-color: #' . esc_attr( $background_color ) . ';color: ' . esc_attr( $pcolor ) . ';}.entry-content, .excerpt-content, li, h2, h3, h4 {color: ' . esc_attr( $pcolor ) . ';}
     #nav_button{background: linear-gradient(to bottom,  ' . esc_attr( $linkcolor ) . ' 0%,  ' . esc_attr( $linkcolor ) . ' 100%);}a, .solo-blog .article-heading .post-title a{color: ' . esc_attr( $linkcolor ) . ';}.page-nav a,button,input[type="submit"]{color: ' . esc_attr( $linkcolor ) . ';background: ' . esc_attr( $b2color ) . ';}
-    @media screen and (min-width: 1025px){body:width:98%;margin: 0 auto;}
+    
+    @media screen and ( min-width: 1025px ){
+    body{width:98%;margin: 0 auto;}
         .section-content, .inner_content{
-            padding-left: ' . esc_attr( $cpaddg ) . 'px;
-            padding-right: ' . esc_attr( $cpaddg ) . 'px;
+            padding-left: calc(' . esc_attr( $cpaddg ) . 'px - 15px);
+            padding-right:calc(' . esc_attr( $cpaddg ) . 'px - 15px);
             text-align:' . esc_attr( $calign ) .'; }
     .page-header-faux{padding: 15px ' . esc_attr( $cpaddg ) . 'px;}
     .page-header,.nav-wrapper{padding-left: calc(' . esc_attr( $cpaddg ) . 'px - 15px);padding-right:calc(' . esc_attr( $cpaddg ) . 'px - 15px);}

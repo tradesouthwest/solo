@@ -29,42 +29,44 @@ if ( !defined ( 'SOLO_VER' ) ) { define ( 'SOLO_VER', time() ); }
 // FAST LOADER References ( find @#id in DocBlocks )
 // ------------------------- Actions ---------------------------
 // A1
-add_action( 'after_setup_theme',   'solo_theme_setup' );
+add_action( 'after_setup_theme',        'solo_theme_setup' );
 // A2
-add_action( 'after_setup_theme',     'solo_theme_content_width', 0 );
+add_action( 'after_setup_theme',        'solo_theme_content_width', 0 );
 // A3
-add_action( 'wp_enqueue_scripts',      'solo_theme_enqueue_styles' );
+add_action( 'wp_enqueue_scripts',       'solo_theme_enqueue_styles' );
 // A4
-add_action( 'widgets_init',              'solo_theme_widgets_init' );
+add_action( 'widgets_init',             'solo_theme_widgets_init' );
 // A5
-add_action( 'admin_init',                  'solo_theme_add_editor_styles' );
+add_action( 'admin_init',               'solo_theme_add_editor_styles' );
 // A6
-add_action( 'solo_render_attachment', 'solo_render_attachment_link' );
+add_action( 'solo_render_attachment',   'solo_render_attachment_link' );
 // A7
-add_action( 'solo_excerpt_attachment', 'solo_excerpt_attachment_toanchor' );
+add_action( 'solo_excerpt_attachment',  'solo_excerpt_attachment_toanchor' );
 // A10
-add_action( 'solo_heading_metadata', 'solo_heading_metadata_render' );
+add_action( 'solo_heading_metadata',    'solo_heading_metadata_render' );
 // A11
 add_action( 'solo_page_comments_allow', 'solo_page_comments_open_ornot');
 // A12
-add_action( 'solo_featured_excerpt', 'solo_featured_excerpt_maybe' );
+add_action( 'solo_featured_excerpt',    'solo_featured_excerpt_maybe' );
 // A8
-add_action( 'solo_header_declaration', 'solo_header_declaration_render' );
+add_action( 'solo_header_declaration',  'solo_header_declaration_render' );
 // A8
-//add_action('solo_render_hero', 'solo_render_hero_section');
+add_action( 'solo_menu_text',           'solo_menu_text_render' );
 // A9
-add_action( 'solo_check_pagination', 'solo_check_pagination_pre' );
+add_action( 'solo_check_pagination',    'solo_check_pagination_pre' );
 // ------------------------- Filters -----------------------------
 // F2
 add_filter( 'widget_tag_cloud_args',    'solo_theme_widget_tag_cloud_args' );
 // F3
-add_filter('excerpt_more',          'solo_custom_excerpt_more'); 
+add_filter('excerpt_more',              'solo_custom_excerpt_more'); 
 // F4
-add_filter( 'body_class',       'solo_theme_heropage_class' );
+add_filter( 'body_class',               'solo_theme_heropage_class' );
 // F5
-add_filter('body_class',      'solo_theme_browser_body_class');
+add_filter('body_class',                'solo_theme_browser_body_class');
 // F6
-add_filter( 'body_class',   'solo_theme_bloglayout_class' );
+add_filter( 'body_class',               'solo_theme_bloglayout_class' );
+// F7
+add_filter( 'the_content',              'solo_render_excerpt_toblog' );
 /**
  * Add backwards compatibility support for wp_body_open function.
  */
@@ -299,38 +301,8 @@ function solo_theme_custom_logo() {
             $output = ''; 
         }
     }
-
         // Output sanitized in header to assure all html displays.
         return $output;
-}
-add_filter( 'the_content', 'solo_render_excerpt_toblog' );
-function solo_render_excerpt_toblog( $content ) {
-
-	if ( is_home() || ( is_category() || is_archive() ) ) : 
-		$rdmore = 'View Article';
-		$text   = strip_shortcodes( $content );
-		$text   = str_replace(']]>', ']]&gt;', $text);
-		$text   = strip_tags($text);
-		$excerpt_length = apply_filters('excerpt_length', 55);
-		$excerpt_more   = apply_filters('excerpt_more', ' ' . '[...]');
-		$words  = preg_split("/[\n\r\t ]+/", 
-					$text, 
-					$excerpt_length + 1, 
-					PREG_SPLIT_NO_EMPTY
-					);
-		if ( count($words) > $excerpt_length ) {
-			array_pop($words);
-			$text = implode(' ', $words);
-			$text = $text . $excerpt_more;
-		} else {
-			$text = implode(' ', $words);
-		}        
-		return $text . '<a href="'.esc_attr( esc_url( get_permalink() ) ) .'" 
-				rel="bookmark"><span class="permalnk">
-				<em>['. esc_attr__($rdmore, 'solo').'...]</em></span></a>';
-	endif;
-		return $content;
-
 }
 
 /** #A6
@@ -355,7 +327,6 @@ function solo_render_attachment_link(){
     </figure><?php 
 }
 
-
 /** #A7
  * Attachment render for excerpts
  *
@@ -378,6 +349,23 @@ function solo_excerpt_attachment_toanchor(){
 			) 
 		); ?></a>
 		</figure><?php 
+}
+
+/** #A8
+ * Render text if not empty
+ *
+ * @since 1.0.2
+ * @return HTML
+ */
+function solo_menu_text_render(){
+	$txt = get_theme_mod( 'solo_menu_text', '' );
+	if ( '' != $txt ) {
+		
+		return esc_html_e( $txt, 'solo' );
+	} else {
+		
+		return '';
+	}
 }
 
 /** #A10
@@ -512,7 +500,6 @@ function solo_check_pagination_pre(){
 	} 
 }
 
-
 /** #F2
  * Modifies tag cloud widget arguments to display all tags in the same font size
  * and use list format for better accessibility.
@@ -591,7 +578,6 @@ function solo_theme_browser_body_class($classes) {
 	return $classes;
 } 
 
-
 /** #F6
  * Adding body class to the blog page flex option
  * 
@@ -612,3 +598,36 @@ function solo_theme_bloglayout_class($classes){
 	
 	return $classes;
 } 
+
+/** #F7
+ * Add excerpt to Article headings 
+ * @since 1.0.0
+ */
+function solo_render_excerpt_toblog( $content ) {
+
+	if ( is_home() || ( is_category() || is_archive() ) ) : 
+		$rdmore = 'View Article';
+		$text   = strip_shortcodes( $content );
+		$text   = str_replace(']]>', ']]&gt;', $text);
+		$text   = strip_tags($text);
+		$excerpt_length = apply_filters('excerpt_length', 55);
+		$excerpt_more   = apply_filters('excerpt_more', ' ' . '[...]');
+		$words  = preg_split("/[\n\r\t ]+/", 
+					$text, 
+					$excerpt_length + 1, 
+					PREG_SPLIT_NO_EMPTY
+					);
+		if ( count($words) > $excerpt_length ) {
+			array_pop($words);
+			$text = implode(' ', $words);
+			$text = $text . $excerpt_more;
+		} else {
+			$text = implode(' ', $words);
+		}        
+		return $text . '<a href="'.esc_attr( esc_url( get_permalink() ) ) .'" 
+				rel="bookmark"><span class="permalnk">
+				<em>['. esc_attr__($rdmore, 'solo').'...]</em></span></a>';
+	endif;
+		return $content;
+
+}
