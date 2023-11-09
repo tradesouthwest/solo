@@ -360,8 +360,11 @@ function solo_excerpt_attachment_toanchor(){
 function solo_menu_text_render(){
 	$txt = get_theme_mod( 'solo_menu_text', '' );
 	if ( '' != $txt ) {
-		
-		return esc_html_e( $txt, 'solo' );
+		esc_html(
+            printf( esc_attr__( '%s', 'solo' ), // phpcs:ignore WordPress.WP.I18n.NoEmptyStrings
+                esc_attr( $txt )
+            )
+        );
 	} else {
 		
 		return '';
@@ -388,7 +391,8 @@ function solo_heading_metadata_render(){
 	| <?php esc_html_e('Added on: ', 'solo'); ?> <em><?php the_date(); ?></em></small>
 	</span>
 	<?php 
-	echo ob_get_clean();
+	$output = ob_get_clean();
+	echo wp_kses_post( $output );
 }
 
 /** 
@@ -477,7 +481,8 @@ function solo_header_declaration_render(){
 		</div>
 	</div>
 	<?php
-	echo ob_get_clean(); 
+	$output = ob_get_clean();  
+	echo wp_kses_post( $output );
 }
 
 /** #A9
@@ -607,27 +612,31 @@ function solo_render_excerpt_toblog( $content ) {
 
 	if ( is_home() || ( is_category() || is_archive() ) ) : 
 		$rdmore = 'View Article';
-		$text   = strip_shortcodes( $content );
-		$text   = str_replace(']]>', ']]&gt;', $text);
-		$text   = strip_tags($text);
-		$excerpt_length = apply_filters('excerpt_length', 55);
-		$excerpt_more   = apply_filters('excerpt_more', ' ' . '[...]');
-		$words  = preg_split("/[\n\r\t ]+/", 
+		$text      = strip_shortcodes( $content );
+		$text      = str_replace( ']]>', ']]&gt;', $text ); // phpcs:ignore Generic.Strings.UnnecessaryStringConcat
+		$excerpt_length = apply_filters( 'excerpt_length', 55 );
+		$excerpt_more   = apply_filters( 'excerpt_more', ' ' . '[...]' ); // phpcs:ignore Generic.Strings.UnnecessaryStringConcat.Found
+		$words              = preg_split( "/[\n\r\t ]+/", 
 					$text, 
 					$excerpt_length + 1, 
 					PREG_SPLIT_NO_EMPTY
 					);
+					//$trsr = printf( __( '%s', 'solo' ), $rdmore );
+					
 		if ( count($words) > $excerpt_length ) {
 			array_pop($words);
 			$text = implode(' ', $words);
-			$text = $text . $excerpt_more;
+			$text = wp_kses_post( $text . $excerpt_more );
+			
 		} else {
 			$text = implode(' ', $words);
-		}        
+		}  
+		      
 		return $text . '<a href="'.esc_attr( esc_url( get_permalink() ) ) .'" 
 				rel="bookmark"><span class="permalnk">
-				<em>['. esc_attr__($rdmore, 'solo').'...]</em></span></a>';
+				<em>[' . esc_html(  $rdmore ) . '...]</em></span></a>';
 	endif;
-		return $content;
+	
+	    	return $content;
 
 }

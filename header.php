@@ -36,9 +36,10 @@
             if( has_custom_logo() ) : ?>
 
             <div class="solo-logo-container site-logo">
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" 
-                   rel="bookmark"><?php echo wp_kses_post( 
-                   force_balance_tags( solo_theme_custom_logo() ) ); ?></a>
+                
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>"  rel="bookmark">
+                <?php echo wp_kses_post( force_balance_tags( solo_theme_custom_logo() ) ); ?></a>
+                
             </div>
             <?php 
             endif; ?>

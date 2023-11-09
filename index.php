@@ -55,8 +55,9 @@ get_header(); ?>
 
                 <?php the_content( '', true );  ?>
 
-                <?php } 
-                else { ?>
+                <?php 
+                } else { 
+                ?>
 
                     <div class="after-excrpt">
                         <p class="after-cats"><span><small><?php esc_html_e('Categorized as: ', 'solo'); ?>
