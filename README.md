@@ -1,39 +1,32 @@
-# solo
-solo is a minimalistic tiny flex based theme templated for general website use.
-
-Theme Name:   solo
-
+# Solo
 Contributors: Tradesouthwest
-
 Requires PHP: 7.2
-
 Requires CP:  1.4
-
 Tested up to: 1.5
+Version:      1.0.0
+License:      GPLv2 or later
+License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+Tags: one-column, custom-background, custom-colors, custom-header, custom-menu, editor-style, threaded-comments, translation-ready, blog
 
-Version:      1.0.4
+## Description == 
+Solo is a minimalistic tiny flex based theme templated for general website use. 
+Basic content sections are full width. Footer is full width with three widget sections. Options include content padding; background-color.
+Theme sets maximum width to 1440px for content comfort readability. 
+Customizer options include: .section-content .page-header .nav-container bk-color
+Demo at https://leadspilot.com/classicpress/ (Theme is compliant but not fully accessibility ready.)
 
-Text domain:  solo
-
-License: GPLv2 or later; License URI: http://www.gnu.org/licenses/gpl-2.0.html; 
-
-Tags: one-column, two-columns, right-sidebar, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, threaded-comments, translation-ready, blog
-
-## Description
-solo is a minimalistic tiny flex based theme templated for general website use. Features custom logo; Hero image and call to action section; Flex based containers; extremely fast page load. Simple, reliable, fast and good looking. Demo at https://classicpress-themes.com/solo/ 
-
-## Features 
+== Features ==
 - Theme headings
-- Custom large banner "Hero" section on specific pages
-- Hero adds Title, intro, background image, Call To Action button and url to button
-- Display blog posts as column or row boxes
+- Post excerpts next to featured image
+- Header content can be edited to add fields of text and a contact link
+- Display blog post metadata under title of post
 - Adjustable content padding
-- font and background color adjustments
+- Text alignment can be changed to left, right, justify and center
 - Uses CSS Flex layout for reliable responsive design
 - Three footer widgets
-- Sidebar is on right
+- Theme has no content sidebar. This is to improve all mobile device support.
 
-## Installation
+== Installation ==
 
 1. In your admin panel, go to Appearance -> Themes and click the 'Add New' button.
 2. Type in solo in the search form and press the 'Enter' key on your keyboard.
@@ -41,11 +34,17 @@ solo is a minimalistic tiny flex based theme templated for general website use. 
 4. Navigate to Appearance > Customize in your admin panel and customize to taste.
 
 
-## Copyright 
+== Copyright ==
 
-solo ClassicPress Theme, Copyright 2023 tradesouthwest.com
-solo is distributed under the terms of the GNU GPL
+Solo ClassicPress Theme, Copyright 2023 tradesouthwest.com
+Solo is distributed under the terms of the GNU GPL
 
-## Notes
+== Notes ==
 
 Theme is not fully accessibility ready.
+
+== Change Log ==
+= 1.0.1
+* @600 styles
+= 1.0.0
+* initial release 
