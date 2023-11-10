@@ -17,16 +17,16 @@ Use it to make something cool, have fun, and share what you've learned with othe
 */
 
 /* ===========================
-    CSS Index         
+    CSS Index
 ==============================
  *
- * 1.0 - Body/Page 
+ * 1.0 - Body/Page
  * 2.0 - Universal padding and margins and alignments
  * 3.0 - Site Header
  * * 3.1 - Navigation
  * 4.0 - Page
  * 5.0 - Wide Banner Top
- * 6.0 - Main 
+ * 6.0 - Main
  * 7.0 - Content
  * 8.0 - Sidebar
  * 9.0 - Footer
@@ -89,7 +89,7 @@ a:focus {
 /**
  * ************************************************** 2.0 - Universal
  */
- 
+
 /*
  Avoid text overflows
 */
@@ -102,7 +102,7 @@ img {
 	border-style: none; /* @source normalize.css */
 	height: auto;
 	max-width: 100%;
-	/* Adhere to container width. 
+	/* Adhere to container width.
 	vertical-align: middle; */
 }
 .screen-reader-text {
@@ -183,7 +183,7 @@ pre {
   background-color: transparent;
   border-radius: 0;
 }
-pre code, 
+pre code,
 code{
   font-family: monaco, "Consolas", "Lucida Console", monospace;
   background: #efefef
@@ -242,7 +242,7 @@ input[type="text"]{
   padding: 4px;
   line-height: 1.28;
   vertical-align: middle;
-  
+
 }
 
 label + input,
@@ -275,15 +275,15 @@ cite:before{
   display: inline-flex;
   margin-right: .25em;
 }
-ol, 
+ol,
 ul{
   margin: 0;
 }
-ol li, 
+ol li,
 ul li{
   margin-left: 1em;
   margin-right: 1em;
-  line-height: 1.5 
+  line-height: 1.5
 }
 /**
 * ************************************************** 3.0 - Site Header
@@ -334,7 +334,7 @@ the hamburger button with a little gradient effekt
   height:   52px;
   padding:  0px 4px 7px 3px;
   position: relative;
-  width:    54px; 
+  width:    54px;
   left:     30px;
   margin-bottom: .5em;
 }
@@ -361,7 +361,7 @@ The white stripes in the hamburger button
 }
 .page-nav{
   display: flex;
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
   justify-content: flex-start;
   list-style: none;
   margin: 0;
@@ -372,15 +372,15 @@ The white stripes in the hamburger button
 }
 .nav-container{
   display: flex;
-	
+
 	flex-wrap: wrap;
   margin: 1em auto;
-} 
-.page-nav{   
+}
+.page-nav{
   z-index: 99999;
   list-style-type: none;
 
-} 
+}
 .main-default{
     z-index: 1;
   }
@@ -388,17 +388,20 @@ The white stripes in the hamburger button
     background: transparent;
   }
 .page-nav a {
-  
   border-radius: 0;
   margin: 0 4px 0 1px;
   display: inline-flex;
 	padding: .5em 1.5em;
   width: max-content;
-} 
+}
 .page-nav a:not(.sub-menu li a){
   box-shadow: 0px 1px 1px 1px #d8d8d8;
   margin-top: 3px;
   margin-bottom: 3px;
+}
+.current_page_item a{
+  outline: 3px solid #eeeeee;
+  outline-offset: -3px;
 }
 .page-nav .sub-menu {
   display: none;
@@ -429,7 +432,7 @@ The white stripes in the hamburger button
 }
 .page-nav .sub-menu > li {
   margin-left: 3.75em;
-} 
+}
 .page-nav .sub-menu li.menu-item-has-children .sub-menu li:first-child{
   margin-top: .65em
 }
@@ -524,7 +527,7 @@ The white stripes in the hamburger button
   padding: 0;
 }
 /**
- * ************************************************** 6.0 Main 
+ * ************************************************** 6.0 Main
  */
 main {
   display:       flex;
@@ -537,10 +540,10 @@ main {
 .page-wrap{
   height:  100%;
   margin:  0 auto;
-  padding: 0; 
+  padding: 0;
   display: flex;
   flex-direction: column;
- 
+
 }
 /**
  * ************************************************** 7.0 - Content
@@ -587,7 +590,7 @@ main {
   font-style: oblique
 }
 .solo-loop {
-  padding: 0; 
+  padding: 0;
   /* max width keeps content readable */
   max-width: 99em;
   margin: 0 auto;
@@ -628,7 +631,7 @@ main {
   transform: scale(.875);
   margin: 0;
   padding: 0;
-  
+
 }
 .solo-featured-excerpt{
   display: flex;
@@ -684,7 +687,7 @@ figcaption:after{
   content: "";
   clear: both;
   display: block;
-} 
+}
 /* Gallery
  ---------------------------------------- */
 
@@ -777,14 +780,14 @@ figcaption:after{
 }
 #wp-calendar {
   table-layout:fixed;
-  
+
 }
 #wp-calendar td{
   padding: 3px 9px;
 }
 /**
- * ************************************************** 9.0 Footer 
- */ 
+ * ************************************************** 9.0 Footer
+ */
 .page-footer {
   height: 100%;
   width: 100%;
@@ -844,10 +847,10 @@ figcaption:after{
 }
 /**
  * ************************************************** 10.0 - Media Breakpoints
- * Mobile nav breakpoint is at 900px. 
+ * Mobile nav breakpoint is at 900px.
  */
 @media screen and (max-width: 600px) {
-  
+
   .site-title, h1{
     text-align:center;
     font-size: inherit;
@@ -862,7 +865,7 @@ figcaption:after{
     border: thin solid #f0f2f1;
     margin-bottom: .25em;
   }
- 
+
 
   .page-header-inner .site-title{
     font-size: 1.825rem;
@@ -873,8 +876,8 @@ figcaption:after{
   }
   .nav-button-wrapper{
   display: flex;
-  /* repeating-linear-gradient( 
-    45deg, transparent, transparent 10px, #eee 10px, #aaa 20px ), 
+  /* repeating-linear-gradient(
+    45deg, transparent, transparent 10px, #eee 10px, #aaa 20px ),
     linear-gradient( to bottom, #eee, #bbb );*/
   width: 100%;
   padding-left: 15px;
@@ -887,9 +890,9 @@ figcaption:after{
   .page-footer,
   .section-content,
   .section-sidebar{
-    width:100%; 
+    width:100%;
     flex-direction: column;
-  } 
+  }
   #wp-calendar td{
     padding: 3px;
   }
@@ -897,7 +900,7 @@ figcaption:after{
   .page-header .solo-attachment-small{
     height: fit-content;
   }
-  
+
   .comment-form-comment > textarea{
     max-width: 95vw;
     margin: 0 auto;
@@ -922,13 +925,13 @@ figcaption:after{
   .solo-logo-container:first-child{
     border: none;
     padding-left:0;
-   
+
   }
    .solo-logo-container .site-description{
   margin-top: .5em;
   width: 100%;
   padding: 4px 10px 10px;
-  
+
   justify-content: start;
   }
   .solo-declare-top{
@@ -942,26 +945,26 @@ figcaption:after{
     margin-bottom: 1em;
     margin-top: 1em;
   }
-  
+
   .page-header,
-  .section-content, 
-  .solo-page .inner_content{ 
+  .section-content,
+  .solo-page .inner_content{
     padding-left: 10px;
-    padding-right: 10px; 
+    padding-right: 10px;
   }
   .nav-expand-title{
     position:relative;
     margin: auto 4em auto 3em;
   }
   .nav-button-wrapper{
-    display: flex; 
+    display: flex;
   }
   .nav-wrapper{
     margin-left: -15px;
     margin-right: 15px;
   }
   .nav-container{
-    display: flex;    
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     z-index: 99999;
@@ -1052,10 +1055,10 @@ figcaption:after{
     border: none;
     padding-left:0;
   }
-} 
+}
 @media screen and (min-width: 1439px){
-  body{ 
-    
+  body{
+
     margin: 0 auto;
   }
   .page-nav{
@@ -1066,7 +1069,7 @@ figcaption:after{
     margin: 0;
   }
   .back_to_top {
-  
+
     left: auto;
   }
   .page-wrap{
@@ -1077,4 +1080,4 @@ figcaption:after{
     border-bottom: 0;
     border-left: 1px dotted #ddd;
   }
-} 
+}
