@@ -45,6 +45,6 @@ Theme is not fully accessibility ready.
 
 == Change Log ==
 * 1.0.1
- - @600 styles
+@600 styles
 * 1.0.0
- - initial release 
+initial release 
