@@ -31,15 +31,14 @@
     </a>
 
     <header class="page-header" aria-label="Banner">
+    
         <div class="solo-declare-container">
             <?php 
             if( has_custom_logo() ) : ?>
 
             <div class="solo-logo-container site-logo">
-                
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>"  rel="bookmark">
                 <?php echo wp_kses_post( force_balance_tags( solo_theme_custom_logo() ) ); ?></a>
-                
             </div>
             <?php 
             endif; ?>
@@ -63,6 +62,7 @@
                     </div>            
                 </div>  
             </div>
+                
                 <div class="page-header-declare solo-logo-container">
 
                     <?php do_action( 'solo_header_declaration' ); ?>
