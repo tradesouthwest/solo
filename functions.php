@@ -86,7 +86,7 @@ if ( ! function_exists( 'wp_body_open' ) ) {
  *
  * Create your own solo_setup() function to override in a child theme.
  *
- * @since Classic Sixteen 1.0
+ * @since 1.0.2
  */
 if ( ! function_exists( 'solo_theme_setup' ) ) :
 
@@ -111,27 +111,27 @@ if ( ! function_exists( 'solo_theme_setup' ) ) :
 		* Enable support for Post Thumbnails on posts and pages.
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
-		// a.
-		add_theme_support( 'html5', array(
+		// a. Deprecated after CP 2.2
+		/* add_theme_support( 'html5', array(
 			'search-form',
 			'comment-form',
 			'comment-list',
 			'gallery',
 			'caption',
-		));
+		)); */
 
 		// b.
 		add_theme_support( 'title-tag' );
     	add_theme_support( 'automatic-feed-links' ); // rss feederz
     
-		/*
-		 * Let ClassicPress manage the document title.
-		 * By adding theme support, we declare that this theme does not use a
-		 * hard-coded <title> tag in the document head, and expect WordPress to
-		 * provide it for us.
-		 */
-		add_theme_support( 'title-tag' );
 		
+
+
+
+
+
+
+
 		add_theme_support( 'post-thumbnails', array( 'post', 'page') );
 		// register new phone-landscape featured image size. @width, @height, and @crop
 		add_image_size( 'solo-featured', 520, 300, false);   
@@ -139,7 +139,7 @@ if ( ! function_exists( 'solo_theme_setup' ) ) :
 		/*
 		 * Enable support for custom logo.
 		 *
-		 *  @since Classic Sixteen 1.2
+		 *  @since 1.0
 		 */
 		add_theme_support( 'custom-logo' );
 
@@ -171,7 +171,7 @@ endif;
  *
  * @global int $content_width
  *
- * @since Classic Sixteen 1.0
+ * @since 1.0
  */
 function solo_theme_content_width() {
 	$GLOBALS['content_width'] = apply_filters( 'solo_content_width', 520 );
@@ -180,7 +180,7 @@ function solo_theme_content_width() {
 /** #A3
  * Enqueues scripts and styles.
  *
- * @since Classic Sixteen 1.0
+ * @since 1.0.2 removed hambrg.js
  */
 function solo_theme_enqueue_styles() {
 	wp_enqueue_style( 
@@ -203,13 +203,13 @@ function solo_theme_enqueue_styles() {
 		SOLO_VER, 
 		true 
 	);
-	wp_enqueue_script( 
+	/* wp_enqueue_script( 
 		'solo-hamburger', 
 		get_template_directory_uri() . '/rels/solo-hamburger.js', 
 		array(), 
 		SOLO_VER, 
 		true 
-	);
+	); */
 }
 
 
@@ -218,7 +218,7 @@ function solo_theme_enqueue_styles() {
  *
  * @link https://developer.wordpress.org/reference/functions/register_sidebar/
  *
- * @since Classic Sixteen 1.0
+ * @since 1.0
  */
 function solo_theme_widgets_init() {
 	register_sidebar(
@@ -509,7 +509,7 @@ function solo_check_pagination_pre(){
  * Modifies tag cloud widget arguments to display all tags in the same font size
  * and use list format for better accessibility.
  *
- * @since Twenty Sixteen 1.1
+ * @since 1.0
  *
  * @param array $args Arguments for tag cloud widget.
  * @return array The filtered arguments for tag cloud widget.
