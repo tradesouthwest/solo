@@ -3,7 +3,7 @@ Contributors: Tradesouthwest
 Requires PHP: 7.2
 Requires CP:  1.4
 Tested up to: 1.5
-Version:      1.0.2
+Version:      1.0.3
 License:      GPLv2 or later
 License URI:  http://www.gnu.org/licenses/gpl-2.0.html
 Tags: one-column, custom-background, custom-colors, custom-header, custom-menu, editor-style, threaded-comments, translation-ready, blog
@@ -44,9 +44,10 @@ Solo is distributed under the terms of the GNU GPL
 Theme is not fully accessibility ready.
 
 == Change Log ==
-* 1.0.2
+* 1.0.3
 fixed docblocks
 removed theme support
+* 1.0.2
 re-did header positions, 
 added flexible container to nav,
 * 1.0.1

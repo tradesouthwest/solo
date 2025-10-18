@@ -23,7 +23,7 @@
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
  * @package solo
- * @since 1.0.0
+ * @since 1.0.3
  */
 if ( !defined ( 'SOLO_VER' ) ) { define ( 'SOLO_VER', time() ); }
 // FAST LOADER References ( find @#id in DocBlocks )
