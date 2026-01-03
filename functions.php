@@ -25,7 +25,7 @@
  * @package solo
  * @since 1.0.3
  */
-if ( !defined ( 'SOLO_VER' ) ) { define ( 'SOLO_VER', time() ); }
+if ( !defined ( 'SOLO_VER' ) ) { define ( 'SOLO_VER', '1.0.4' ); }
 // FAST LOADER References ( find @#id in DocBlocks )
 // ------------------------- Actions ---------------------------
 // A1

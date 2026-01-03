@@ -6,7 +6,7 @@ Author URI:  https://tradesouthwest.com/
 Description: Solo is a minimalism tiny flex based theme templated for general website use. Basic content sections are full width. Footer is full width with three widget sections. Options include content padding; background-color; custom header text and link; link color; text alignment; Demo at https://leadspilot.com/classicpress/
 Requires PHP: 7.4
 Requires CP:  1.4
-Version:     1.0.3
+Version:     1.0.4
 License:     GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags:        one-column, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header,sticky-post, threaded-comments, translation-ready, blog
@@ -364,6 +364,7 @@ The white stripes in the hamburger button
 /* start keep for fallback */
 .page-nav ul{
   list-style: inside none;
+  display: flex;
 }
 .page-nav{
   display: flex;
@@ -543,7 +544,7 @@ main {
  * ************************************************** 7.0 - Content
  */
 .section-content {
-  width: calc(100% - .5em);
+  width: 100%;
   margin: .5em auto;
 }
 /* https://www.compart.com/en/unicode/U+27B0 Curly Loop */

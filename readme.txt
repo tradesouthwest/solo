@@ -1,8 +1,10 @@
 === Solo ===
-Contributors: Tradesouthwest
-Requires PHP: 7.2
-Requires CP:  1.4
-Tested up to: 1.5
+Contributors:  Tradesouthwest
+Guthub URL:    https://github.com/tradesouthwest/solo
+Tested up to:  10
+Requires at least: 6.2
+Stable tag:   1.0.4
+Version:      1.0.4
 Version:      1.0.3
 License:      GPLv2 or later
 License URI:  http://www.gnu.org/licenses/gpl-2.0.html
